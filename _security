@@ -1,0 +1,4 @@
+# Block unusual requests
+#RewriteCond %{REQUEST_METHOD} !^(GET|POST|HEAD)$ # PUT DELETE --> http uploads/deletes via rest api
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)$
+RewriteRule .* - [F]

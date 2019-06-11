@@ -1,0 +1,14 @@
+# redirect2www
+
+# Problem:  asdf.example.com will be redirected to www.asdf.example.com
+# Solution: Hostname is set as ENV variable per vhost.
+
+# SetEnv is called AFTER mod_rewrite. SetEnvif is called BEFORE.
+# https://stackoverflow.com/a/7279310/568737
+# SetEnvIf Request_Protocol "HTTP.*" DOMAIN_NAME=example.com
+# !! SetEnvIf have to be set in the vhost setting, not global !! Otherwise it is overwritten and holds only the last value after startup
+
+# Redirect to www.DOMAIN.TLD
+
+RewriteCond %{HTTP_HOST}	!^www\.						[NC]
+RewriteRule .*			https://www.%{ENV:DOMAIN_NAME}%{REQUEST_URI}	[R=301,NE,L]

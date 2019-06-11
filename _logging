@@ -1,0 +1,3 @@
+        SetEnvIf X-Forwarded-For "^.*\..*\..*\..*" forwarded
+        CustomLog ${DOMAIN_PATH}/logs/access.log detailed env=!forwarded
+        CustomLog ${DOMAIN_PATH}/logs/access.log proxy env=forwarded

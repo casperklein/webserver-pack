@@ -1,0 +1,19 @@
+*** a2enmod.original	2016-08-07 12:56:37.000000000 +0200
+--- a2enmod	2017-02-14 22:56:47.964804566 +0100
+***************
+*** 60,66 ****
+  }
+  else {
+      $dir    = 'sites';
+!     $sffx   = '.conf';
+      $reload = 'reload';
+  }
+  $name = ucfirst($obj);
+--- 60,66 ----
+  }
+  else {
+      $dir    = 'sites';
+!     $sffx   = '';
+      $reload = 'reload';
+  }
+  $name = ucfirst($obj);
