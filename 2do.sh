@@ -48,10 +48,19 @@ cp example.com-settings $DOMAIN-settings
 cd /var/domains
 mkdir -pv "$DOMAIN"/logs
 mkdir -v "$DOMAIN"/tmp
-chmod 770 "$DOMAIN"/logs
-chmod 777 "$DOMAIN"/tmp			
+chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
+chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
+chown :www-data "$DOMAIN"/tmp
 
 # add $DOMAIN
 vi /etc/hosts
 
-# logrotate?
+# logrotate
+cp vhost-logrotate /etc/logrotate.d/
+
+# test
+logrotate -d /etc/logrotate.d/vhost-logrotate
+
+# simulate rotate
+logrotate -df /etc/logrotate.d/vhost-logrotate
+
