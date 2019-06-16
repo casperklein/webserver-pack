@@ -9,13 +9,12 @@ define DOMAIN_CERT	/ssl/${DOMAIN}.pem
 </VirtualHost>
 
 # HTTPS
-<VirtualHost *:443>
-	# Force TLS for 1 year
-	# a2enmod headers
-	Header always set Strict-Transport-Security max-age=31536000
-	include /etc/apache2/sites-available/_sslSettings
-	include ${DOMAIN_SETTINGS}
-</VirtualHost>
+#<VirtualHost *:443>
+#	# Force TLS for 1 year
+#	# Header always set Strict-Transport-Security max-age=31536000
+#	include /etc/apache2/sites-available/_sslSettings
+#	include ${DOMAIN_SETTINGS}
+#</VirtualHost>
 
 # Allowing the use of .htaccess files and access to DocumentRoot
 <Directory "${DOMAIN_PATH}">

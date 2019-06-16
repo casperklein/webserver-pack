@@ -6,14 +6,14 @@
 
 	AddDefaultCharset UTF-8
 
-	php_admin_flag safe_mode Off
+	#php_admin_flag safe_mode Off
 	#php_admin_flag allow_url_fopen On
-	php_admin_flag display_errors Off
+	#php_admin_flag display_errors Off
         #php_admin_flag log_errors On
 
-	php_admin_value magic_quotes_gpc 0
-	php_admin_value open_basedir ${DOMAIN_PATH}/:/dev/null
-	php_admin_value upload_tmp_dir ${DOMAIN_PATH}/tmp
+	#php_admin_value magic_quotes_gpc 0
+	#php_admin_value open_basedir ${DOMAIN_PATH}/:/dev/null
+	# php_admin_value upload_tmp_dir ${DOMAIN_PATH}/tmp
 	# must be writeable by webserver
 	# php_admin_value error_log ${DOMAIN_PATH}/logs/php.log
 
@@ -26,8 +26,8 @@
 	include /etc/apache2/sites-available/_security
 	
 	# Force www subdomain & HTTPS
-	SetEnvIf Request_Protocol "HTTP.*" DOMAIN_NAME=${DOMAIN}
-	include /etc/apache2/sites-available/_forceWWWhttps
+	#SetEnvIf Request_Protocol "HTTP.*" DOMAIN_NAME=${DOMAIN}
+	#include /etc/apache2/sites-available/_forceWWWhttps
 
 	# Force SSL
-	include /etc/apache2/sites-available/_forceSSL
+	#include /etc/apache2/sites-available/_forceSSL

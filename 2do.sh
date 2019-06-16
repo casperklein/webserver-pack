@@ -1,5 +1,8 @@
 #!/bin/cat
 
+aptitude install apache2
+a2enmod rewrite
+
 # vHost include -------------------------------------------------------------------------------------------------------
 
 apache2.conf
@@ -36,21 +39,45 @@ mods-enabled/security2.conf
 # verify
 httpheader localhost
 
+# TLS -----------------------------------------------------------------------------------------------------------
+
+# https://bettercrypto.org/
+
+# enable only secure protocols: SSLv3 and TLSv1, but not SSLv2 and SSLv3
+SSLProtocol All -SSLv2 -SSLv3
+SSLHonorCipherOrder On
+SSLCompression off
+SSLCipherSuite 'EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA256:EECDH:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA128-SHA:AES128-SHA'
+
+# OCSP Stapling
+SSLStaplingReturnResponderErrors off
+SSLStaplingResponderTimeout 5
+SSLStaplingCache "shmcb:${APACHE_RUN_DIR}/ssl_stapling_cache(512000)"
+
 # NEW vHOST -----------------------------------------------------------------------------------------------------------
 
 DOMAIN=newdomain.tld
 
 cd /etc/apache2/sites-available/
 
+# create initial config
 cp example.com $DOMAIN
 cp example.com-settings $DOMAIN-settings
+sed "s/example.com/$DOMAIN/g" $DOMAIN
 
+# adjust settings
+vi $DOMAIN $DOMAIN-settings
+
+# create directory structure
 cd /var/domains
 mkdir -pv "$DOMAIN"/logs
 mkdir -v "$DOMAIN"/tmp
 chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
 chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
 chown :www-data "$DOMAIN"/tmp
+
+# activate site
+a2ensite $DOMAIN
 
 # add $DOMAIN
 vi /etc/hosts
@@ -63,4 +90,20 @@ logrotate -d /etc/logrotate.d/vhost-logrotate
 
 # simulate rotate
 logrotate -df /etc/logrotate.d/vhost-logrotate
+
+
+# NEW vHOST TLS -----------------------------------------------------------------------------------
+
+DOMAIN=newdomain.tld
+
+# request certificate
+cd ~
+git clone https://github.com/Neilpang/acme.sh
+cd acme.sh
+./acme.sh --issue -d $DOMAIN --webroot /var/domains/$DOMAIN
+
+# create PEM file suitable for apache
+cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key > /ssl/$DOMAIN.pem
+
+vi $DOMAIN $DOMAIN-settings
 
