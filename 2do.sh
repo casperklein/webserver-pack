@@ -7,7 +7,8 @@ a2enmod rewrite
 
 apache2.conf
 	# parse all files instead of only *.conf
-	IncludeOptional sites-enabled/
+	#IncludeOptional sites-enabled/
+	sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
 
 # LOGGING -------------------------------------------------------------------------------------------------------------
 
@@ -86,11 +87,11 @@ vi /etc/hosts
 cp vhost-logrotate /etc/logrotate.d/
 
 # test
+logrotate -d /etc/logrotate.d/vhost-logrotate 2>&1 | grep considering
 logrotate -d /etc/logrotate.d/vhost-logrotate
 
 # simulate rotate
 logrotate -df /etc/logrotate.d/vhost-logrotate
-
 
 # NEW vHOST TLS -----------------------------------------------------------------------------------
 
