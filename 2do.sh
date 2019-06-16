@@ -8,16 +8,16 @@ a2enmod rewrite
 apache2.conf
 	# parse all files instead of only *.conf
 	#IncludeOptional sites-enabled/
-	sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
+	#sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
 
 # LOGGING -------------------------------------------------------------------------------------------------------------
 
 apache2.conf
 	# If you are behind a reverse proxy, you might want to change %h into %{X-Forwarded-For}
-	LogFormat "%t [%V:%p] %{X-Forwarded-For}i,%h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" proxy
+	#LogFormat "%t [%V:%p] %{X-Forwarded-For}i,%h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" proxy
 
 	# 'combined' extended with vhosts
-	LogFormat "%t [%V:%p] %h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" detailed
+	#LogFormat "%t [%V:%p] %h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" detailed
 
 # SECURITY ------------------------------------------------------------------------------------------------------------
 

@@ -1,16 +1,19 @@
 #!/bin/cat
 
+# APACHE
 aptitude install apache2
+sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
+
 a2enmod rewrite
 a2enmod headers
 a2enmod ssl
 mkdir /ssl /var/domains
 
-# APACHE
-
 cp sites-available/* /etc/apache2/sites-available/
-./a2enmod.patch.sh
+cp conf-available/*  /etc/apache2/conf-available/
+a2enconf vhost-logrotate.conf
 
+./a2enmod.patch.sh
 
 # PHP
 cp php/* /etc/php
