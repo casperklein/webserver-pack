@@ -64,7 +64,7 @@ cd /etc/apache2/sites-available/
 # create initial config
 cp example.com $DOMAIN
 cp example.com-settings $DOMAIN-settings
-sed "s/example.com/$DOMAIN/g" $DOMAIN
+sed -i "s/example\.com/$DOMAIN/g" $DOMAIN
 
 # adjust settings
 vi $DOMAIN $DOMAIN-settings
@@ -106,5 +106,5 @@ cd acme.sh
 # create PEM file suitable for apache
 cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key > /ssl/$DOMAIN.pem
 
+cd /etc/apache2/sites-available/
 vi $DOMAIN $DOMAIN-settings
-

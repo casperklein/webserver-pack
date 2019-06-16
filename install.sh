@@ -11,7 +11,7 @@ mkdir /ssl /var/domains
 
 cp sites-available/* /etc/apache2/sites-available/
 cp conf-available/*  /etc/apache2/conf-available/
-a2enconf vhost-logrotate.conf
+a2enconf custom-logs.conf
 
 ./a2enmod.patch.sh
 
