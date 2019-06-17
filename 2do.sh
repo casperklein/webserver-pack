@@ -57,6 +57,7 @@ SSLStaplingCache "shmcb:${APACHE_RUN_DIR}/ssl_stapling_cache(512000)"
 
 # NEW vHOST -----------------------------------------------------------------------------------------------------------
 
+DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
 
 cd /etc/apache2/sites-available/
@@ -95,6 +96,7 @@ logrotate -df /etc/logrotate.d/vhost-logrotate
 
 # NEW vHOST TLS -----------------------------------------------------------------------------------
 
+DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
 
 # request certificate
