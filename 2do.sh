@@ -2,7 +2,7 @@
 
 # SECURITY ------------------------------------------------------------------------------------------------------------
 
-/etc/apache2/conf-enabled/security.conf
+vi /etc/apache2/conf-enabled/security.conf
 	# will be overwritten by mod_security2
 	ServerTokens Full
 	# mod_security2
@@ -14,8 +14,8 @@
 	# Disallow TRACE method
 	TraceEnable Off
 
-#apt install libapache2-mod-security2
-/etc/apache2/mods-enabled/security2.conf
+aptitude install libapache2-mod-security2
+vi /etc/apache2/mods-enabled/security2.conf
 	disable all stuff
 
 # verify
