@@ -23,7 +23,7 @@ httpheader localhost
 
 # TLS ---------------------------------------------------------------------------------------------
 
-/etc/apache2/mods-enabled/ssl.conf
+vi /etc/apache2/mods-enabled/ssl.conf
 
 	# https://bettercrypto.org/
 
