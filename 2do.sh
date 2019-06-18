@@ -23,18 +23,20 @@ httpheader localhost
 
 # TLS ---------------------------------------------------------------------------------------------
 
-# https://bettercrypto.org/
+/etc/apache2/mods-enabled/ssl.conf
 
-# enable only secure protocols: SSLv3 and TLSv1, but not SSLv2 and SSLv3
-SSLProtocol All -SSLv2 -SSLv3
-SSLHonorCipherOrder On
-SSLCompression off
-SSLCipherSuite 'EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA256:EECDH:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA128-SHA:AES128-SHA'
+	# https://bettercrypto.org/
 
-# OCSP Stapling
-SSLStaplingReturnResponderErrors off
-SSLStaplingResponderTimeout 5
-SSLStaplingCache "shmcb:${APACHE_RUN_DIR}/ssl_stapling_cache(512000)"
+	# enable only secure protocols: SSLv3 and TLSv1, but not SSLv2 and SSLv3
+	SSLProtocol All -SSLv2 -SSLv3
+	SSLHonorCipherOrder On
+	SSLCompression off
+	SSLCipherSuite 'EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA256:EECDH:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA128-SHA:AES128-SHA'
+
+	# OCSP Stapling
+	SSLStaplingReturnResponderErrors off
+	SSLStaplingResponderTimeout 5
+	SSLStaplingCache "shmcb:${APACHE_RUN_DIR}/ssl_stapling_cache(512000)"
 
 # NEW vHOST ---------------------------------------------------------------------------------------
 
