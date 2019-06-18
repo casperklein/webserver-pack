@@ -1,27 +1,8 @@
 #!/bin/cat
 
-aptitude install apache2
-a2enmod rewrite
-
-# vHost include -------------------------------------------------------------------------------------------------------
-
-apache2.conf
-	# parse all files instead of only *.conf
-	#IncludeOptional sites-enabled/
-	#sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
-
-# LOGGING -------------------------------------------------------------------------------------------------------------
-
-apache2.conf
-	# If you are behind a reverse proxy, you might want to change %h into %{X-Forwarded-For}
-	#LogFormat "%t [%V:%p] %{X-Forwarded-For}i,%h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" proxy
-
-	# 'combined' extended with vhosts
-	#LogFormat "%t [%V:%p] %h %u \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" detailed
-
 # SECURITY ------------------------------------------------------------------------------------------------------------
 
-conf-enabled/security.conf
+/etc/apache2/conf-enabled/security.conf
 	# will be overwritten by mod_security2
 	ServerTokens Full
 	# mod_security2
@@ -34,13 +15,13 @@ conf-enabled/security.conf
 	TraceEnable Off
 
 #apt install libapache2-mod-security2
-mods-enabled/security2.conf
+/etc/apache2/mods-enabled/security2.conf
 	disable all stuff
 
 # verify
 httpheader localhost
 
-# TLS -----------------------------------------------------------------------------------------------------------
+# TLS ---------------------------------------------------------------------------------------------
 
 # https://bettercrypto.org/
 
@@ -55,7 +36,7 @@ SSLStaplingReturnResponderErrors off
 SSLStaplingResponderTimeout 5
 SSLStaplingCache "shmcb:${APACHE_RUN_DIR}/ssl_stapling_cache(512000)"
 
-# NEW vHOST -----------------------------------------------------------------------------------------------------------
+# NEW vHOST ---------------------------------------------------------------------------------------
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
@@ -69,6 +50,7 @@ sed -i "s/example\.com/$DOMAIN/g" $DOMAIN
 
 # adjust settings
 vi $DOMAIN $DOMAIN-settings
+cd -
 
 # create directory structure
 cd /var/domains
@@ -77,6 +59,7 @@ mkdir -v "$DOMAIN"/tmp
 chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
 chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
 chown :www-data "$DOMAIN"/tmp
+cd -
 
 # activate site
 a2ensite $DOMAIN
@@ -100,7 +83,6 @@ DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
 
 # request certificate
-cd ~
 git clone https://github.com/Neilpang/acme.sh
 cd acme.sh
 ./acme.sh --issue -d $DOMAIN --webroot /var/domains/$DOMAIN
