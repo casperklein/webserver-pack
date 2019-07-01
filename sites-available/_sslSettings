@@ -3,4 +3,4 @@ SSLCertificateFile ${DOMAIN_CERT}
 SSLUseStapling on
 
 # Test SSL Stapling
-# for i in chill.to hb0.de www.traceroot.de www.heiko-barth.de wiki.heikobarth.de www.timofeigl.de www.hs-steuer.de webshot.heikobarth.de; do echo $i;openssl s_client -connect $i:443 -servername $i -status < /dev/null 2>/dev/null| grep 'OCSP response'; done
+# for i in example.com www.example.com; do echo $i;openssl s_client -connect $i:443 -servername $i -status < /dev/null 2>/dev/null| grep 'OCSP response'; done
