@@ -1,7 +1,7 @@
 #!/bin/cat
 
 # APACHE
-aptitude install apache2
+aptitude install apache2 libapache2-mod-security2
 sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
 
 a2enmod rewrite
