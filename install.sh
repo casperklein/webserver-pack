@@ -11,8 +11,10 @@ mkdir /ssl /var/domains
 
 cp sites-available/* /etc/apache2/sites-available/
 cp conf-available/*  /etc/apache2/conf-available/
-a2enconf custom-logs.conf
-a2enconf custom-ssl.conf
+
+a2enconf z-custom-logs.conf
+a2enconf z-custom-security.conf
+a2enconf z-custom-ssl.conf
 
 ./a2enmod.patch.sh
 

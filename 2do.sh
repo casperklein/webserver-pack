@@ -2,18 +2,6 @@
 
 # SECURITY ------------------------------------------------------------------------------------------------------------
 
-vi /etc/apache2/conf-enabled/security.conf
-	# will be overwritten by mod_security2
-	ServerTokens Full
-	# mod_security2
-	SecServerSignature "HAL9000"
-
-	# Don't add a line containing the server version and virtual host name to server-generated pages
-	ServerSignature Off
-
-	# Disallow TRACE method
-	TraceEnable Off
-
 vi /etc/apache2/mods-enabled/security2.conf
 	disable all stuff
 
