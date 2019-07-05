@@ -22,9 +22,12 @@ a2enconf z-custom-ssl.conf
 cp vhost-logrotate /etc/logrotate.d/
 
 # PHP
-cp php/* /etc/php
+curl https://packages.sury.org/php/README.txt
 
 PHPVERSION='7.3'
+aptitude install php$PHPVERSION
+
+cp php/* /etc/php
 
 ln -s /etc/php/custom.ini /etc/php/$PHPVERSION/apache2/conf.d/98-custom.ini
 ln -s /etc/php/custom-apache.ini /etc/php/$PHPVERSION/apache2/conf.d/99-custom-apache.ini
