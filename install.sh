@@ -18,6 +18,9 @@ a2enconf z-custom-ssl.conf
 
 ./a2enmod.patch.sh
 
+# Logrotate
+cp vhost-logrotate /etc/logrotate.d/
+
 # PHP
 cp php/* /etc/php
 

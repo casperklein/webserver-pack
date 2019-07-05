@@ -39,10 +39,7 @@ a2ensite $DOMAIN
 # add $DOMAIN
 vi /etc/hosts
 
-# logrotate
-cp vhost-logrotate /etc/logrotate.d/
-
-# test
+# test logrotate
 logrotate -d /etc/logrotate.d/vhost-logrotate 2>&1 | grep considering
 logrotate -d /etc/logrotate.d/vhost-logrotate
 
