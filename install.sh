@@ -22,6 +22,8 @@ a2enconf z-custom-ssl.conf
 cp vhost-logrotate /etc/logrotate.d/
 
 # PHP
+
+# Debian 10: PHP version > 7.3 needed?
 curl https://packages.sury.org/php/README.txt
 
 PHPVERSION='7.3'
