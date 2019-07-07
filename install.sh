@@ -21,8 +21,8 @@ a2enconf z-custom-ssl.conf
 
 apachectl configtest && service apache2 restart
 
-# verify
-httpheader localhost
+# verify httpheader
+curl -s -D- -o /dev/null localhost
 
 # Logrotate
 cp vhost-logrotate /etc/logrotate.d/
