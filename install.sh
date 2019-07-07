@@ -3,6 +3,7 @@
 # APACHE
 aptitude install apache2 libapache2-mod-security2
 sed -i.bak 's/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional sites-enabled\//g' /etc/apache2/apache2.conf
+sed -i.bak 's/^/#/' /etc/apache2/mods-available/security2.conf
 
 a2enmod rewrite
 a2enmod headers
@@ -17,6 +18,11 @@ a2enconf z-custom-security.conf
 a2enconf z-custom-ssl.conf
 
 ./a2enmod.patch.sh
+
+apachectl configtest && service apache2 restart
+
+# verify
+httpheader localhost
 
 # Logrotate
 cp vhost-logrotate /etc/logrotate.d/

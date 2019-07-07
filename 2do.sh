@@ -1,13 +1,5 @@
 #!/bin/cat
 
-# SECURITY ------------------------------------------------------------------------------------------------------------
-
-vi /etc/apache2/mods-enabled/security2.conf
-	disable all stuff
-
-# verify
-httpheader localhost
-
 # NEW vHOST ---------------------------------------------------------------------------------------
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
