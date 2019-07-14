@@ -1,6 +1,6 @@
 #!/bin/cat
 
-# NEW vHOST ---------------------------------------------------------------------------------------
+# New vHost ---------------------------------------------------------------------------------------
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
@@ -14,7 +14,6 @@ sed -i "s/example\.com/$DOMAIN/g" $DOMAIN
 
 # adjust settings
 vi $DOMAIN $DOMAIN-settings
-cd -
 
 # create directory structure
 cd /var/domains
@@ -23,7 +22,6 @@ mkdir -v "$DOMAIN"/tmp
 chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
 chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
 chown :www-data "$DOMAIN"/tmp
-cd -
 
 # activate site
 a2ensite $DOMAIN
@@ -54,5 +52,7 @@ cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key > /ssl/$DOMA
 # create PEM file suitable for apache with own DH prime
 cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key /ssl/dhparams.pem > /ssl/$DOMAIN.pem
 
+# enable HTTPS
 cd /etc/apache2/sites-available/
 vi $DOMAIN $DOMAIN-settings
+apachectl configtest && service apache2 restart
