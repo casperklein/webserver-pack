@@ -38,7 +38,7 @@ logrotate -d /etc/logrotate.d/vhost-logrotate
 # simulate rotate
 logrotate -df /etc/logrotate.d/vhost-logrotate
 
-# NEW vHOST TLS -----------------------------------------------------------------------------------
+# Add HTTPS support -----------------------------------------------------------------------------------
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
