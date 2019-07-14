@@ -22,11 +22,14 @@ a2enconf z-custom-ssl.conf
 apachectl configtest && service apache2 restart
 echo
 
-# verify httpheader
+# Verify httpheader
 curl -s -D- -o /dev/null localhost
 
 # Logrotate
 cp vhost-logrotate /etc/logrotate.d/
+
+# Paranoid? Create own DH prime
+openssl dhparam -out /ssl/dhparams.pem 2048
 
 # PHP
 

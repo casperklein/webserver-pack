@@ -51,5 +51,8 @@ cd acme.sh
 # create PEM file suitable for apache
 cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key > /ssl/$DOMAIN.pem
 
+# create PEM file suitable for apache with own DH prime
+cat ~/.acme.sh/$DOMAIN/fullchain.cer ~/.acme.sh/$DOMAIN/$DOMAIN.key /ssl/dhparams.pem > /ssl/$DOMAIN.pem
+
 cd /etc/apache2/sites-available/
 vi $DOMAIN $DOMAIN-settings
