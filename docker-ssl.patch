@@ -1,0 +1,29 @@
+*** example.com	2019-07-19 23:52:55.710281586 +0200
+--- example.com.new	2019-07-20 13:30:38.026557980 +0200
+***************
+*** 9,20 ****
+  </VirtualHost>
+  
+  # HTTPS
+! #<VirtualHost *:443>
+! #	# Force TLS for 1 year
+! #	# Header always set Strict-Transport-Security max-age=31536000
+! #	include /etc/apache2/sites-available/_sslSettings
+! #	include ${DOMAIN_SETTINGS}
+! #</VirtualHost>
+  
+  # Allowing the use of .htaccess files and access to DocumentRoot
+  <Directory "${DOMAIN_PATH}">
+--- 9,20 ----
+  </VirtualHost>
+  
+  # HTTPS
+! <VirtualHost *:443>
+! 	# Force TLS for 1 year
+! 	# Header always set Strict-Transport-Security max-age=31536000
+! 	include /etc/apache2/sites-available/_sslSettings
+! 	include ${DOMAIN_SETTINGS}
+! </VirtualHost>
+  
+  # Allowing the use of .htaccess files and access to DocumentRoot
+  <Directory "${DOMAIN_PATH}">
