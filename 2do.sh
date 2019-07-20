@@ -23,6 +23,9 @@ chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
 chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
 chown :www-data "$DOMAIN"/tmp
 
+# add default content
+echo 'hello world' > "$DOMAIN"/index.html
+
 # activate site
 a2ensite $DOMAIN
 
