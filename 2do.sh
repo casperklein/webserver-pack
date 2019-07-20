@@ -28,6 +28,7 @@ echo 'hello world' > "$DOMAIN"/index.html
 
 # activate site
 a2ensite $DOMAIN
+apachectl reload
 
 # add $DOMAIN
 vi /etc/hosts
