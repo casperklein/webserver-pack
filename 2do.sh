@@ -18,7 +18,7 @@ vi $DOMAIN $DOMAIN-settings
 # create directory structure
 cd /var/domains
 mkdir -pv "$DOMAIN"/logs
-mkdir -v "$DOMAIN"/tmp
+mkdir -pv "$DOMAIN"/tmp
 chmod 770 "$DOMAIN"/logs "$DOMAIN"/tmp
 chown root: "$DOMAIN"/logs "$DOMAIN"/tmp
 chown :www-data "$DOMAIN"/tmp
