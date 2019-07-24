@@ -42,6 +42,8 @@ logrotate -df /etc/logrotate.d/vhost-logrotate
 
 # Add HTTPS support -----------------------------------------------------------------------------------
 
+[ -f ~/.acme.sh/$DOMAIN/fullchain.cer ] && exit
+
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 DOMAIN=newdomain.tld
 
