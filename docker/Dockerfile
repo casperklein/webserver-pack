@@ -21,7 +21,7 @@ RUN sed -i 's/^logrotate.*//g' 2do.sh
 #RUN sed -i 's/^# Add HTTPS.*/exit/g' 2do.sh
 RUN sed -i 's/bin\/cat/bin\/bash/g' 2do.sh
 
-ADD docker-ssl.patch /root/webserver-pack-master
+#ADD docker-ssl.patch /root/webserver-pack-master
 #RUN sed -i 's/^# Add HTTPS.*/exit/g' 2do.sh
 #RUN patch /root/webserver-pack-master/sites-available/example.com -i example.patch
 
@@ -36,5 +36,5 @@ EXPOSE 80
 EXPOSE 443
 #CMD ["apachectl", "-D", "FOREGROUND"] #-D FOREGROUND
 
-ADD docker-run.sh /root/webserver-pack-master
-CMD ./docker-run.sh
+#ADD docker-run.sh /root/webserver-pack-master
+CMD docker/docker-run.sh
