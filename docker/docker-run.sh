@@ -3,7 +3,7 @@ apachectl start
 ./2do.sh
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
-patch /etc/apache2/sites-available/$DOMAIN -i docker-ssl.patch
+patch /etc/apache2/sites-available/$DOMAIN -i docker/docker-ssl.patch
 
 apachectl restart
 
