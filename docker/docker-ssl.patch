@@ -20,7 +20,7 @@
   # HTTPS
 ! <VirtualHost *:443>
 ! 	# Force TLS for 1 year
-! 	# Header always set Strict-Transport-Security max-age=31536000
+! 	Header always set Strict-Transport-Security max-age=31536000
 ! 	include /etc/apache2/sites-available/_sslSettings
 ! 	include ${DOMAIN_SETTINGS}
 ! </VirtualHost>
