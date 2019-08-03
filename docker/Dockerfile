@@ -1,13 +1,11 @@
-FROM debian
+FROM debian:buster
 
 RUN apt-get update
 RUN apt-get -y install patch git curl
 
-ADD https://github.com/casperklein/webserver-pack/archive/master.tar.gz /root
-WORKDIR /root/
-RUN tar xzvf master.tar.gz
+RUN git clone https://github.com/casperklein/webserver-pack /root/webserver-pack
 
-WORKDIR /root/webserver-pack-master
+WORKDIR /root/webserver-pack
 
 # Customize
 RUN sed -i 's/bin\/cat/bin\/bash/g' install.sh
