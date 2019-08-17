@@ -1,7 +1,9 @@
 FROM debian:buster
 
+ENV BUILD_DEPS="patch git curl"
+
 RUN apt-get update
-RUN apt-get -y install patch git curl
+RUN apt-get -y install $BUILD_DEPS
 
 RUN git clone https://github.com/casperklein/webserver-pack /root/webserver-pack
 
