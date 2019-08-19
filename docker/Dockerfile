@@ -1,22 +1,21 @@
-FROM debian:buster
+FROM	debian:10-slim
 
-ENV BUILD_DEPS="patch git curl"
+ENV	PACKAGES="patch git curl"
 
-RUN apt-get update
-RUN apt-get -y install $BUILD_DEPS
-
-RUN git clone https://github.com/casperklein/webserver-pack /root/webserver-pack
+RUN	apt-get update \
+&&	apt-get -y install $PACKAGES \
+&&	git clone https://github.com/casperklein/webserver-pack /root/webserver-pack
 
 WORKDIR /root/webserver-pack
 
 # Customize
-RUN sed -i 's/bin\/cat/bin\/bash/g' install.sh
-RUN sed -i 's/aptitude/apt-get -y/g' install.sh
-RUN sed -i 's/^openssl/exit #openssl/' install.sh
-RUN sed -i 's/^DOMAIN=n.*//g' 2do.sh
-RUN sed -i 's/^vi.*//g' 2do.sh
-RUN sed -i 's/^logrotate.*//g' 2do.sh
-RUN sed -i 's/bin\/cat/bin\/bash/g' 2do.sh
+RUN	sed -i 's/bin\/cat/bin\/bash/g' install.sh \
+&&	sed -i 's/aptitude/apt-get -y/g' install.sh \
+&&	sed -i 's/^openssl/exit #openssl/' install.sh \
+&&	sed -i 's/^DOMAIN=n.*//g' 2do.sh \
+&&	sed -i 's/^vi.*//g' 2do.sh \
+&&	sed -i 's/^logrotate.*//g' 2do.sh \
+&&	sed -i 's/bin\/cat/bin\/bash/g' 2do.sh
 
 RUN ./install.sh
 
