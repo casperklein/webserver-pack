@@ -1,3 +1,13 @@
 #!/bin/bash
 
-docker build -t webservertest .
+USER=casperklein
+NAME=webserver-pack
+TAG=latest
+
+[ -n "$USER" ] && TAG=$USER/$NAME:$TAG || TAG=$NAME:$TAG
+
+DIR=$(dirname "$(readlink -f "$0")") &&
+cd "$DIR" &&
+echo "Building: $TAG" &&
+echo &&	
+docker build -t $TAG .

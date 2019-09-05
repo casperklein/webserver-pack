@@ -1,4 +1,4 @@
-FROM	debian:10-slim
+FROM	debian:10-slim as build
 
 ENV	PACKAGES="patch git curl"
 
@@ -21,7 +21,16 @@ RUN ./install.sh
 
 RUN a2dissite 000-default.conf
 
+
+# Final image
+RUN	apt-get -y install dumb-init \
+&&	rm -rf /var/lib/apt/lists/*
+FROM	scratch
+COPY	--from=build / /
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
 EXPOSE 80
 EXPOSE 443
 
-CMD docker/docker-run.sh
+WORKDIR /root/webserver-pack
+CMD	docker/docker-run.sh
