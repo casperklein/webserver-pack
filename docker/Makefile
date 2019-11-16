@@ -10,7 +10,7 @@ default: build
 build:
 	./build.sh
 
-run:	
+poc:
 	./run.sh
 
 clean:
