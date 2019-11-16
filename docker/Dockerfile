@@ -1,5 +1,9 @@
 FROM	debian:10-slim as build
 
+ENV	USER="casperklein"
+ENV	NAME="webserver-pack"
+ENV	VERSION="latest"
+
 ENV	PACKAGES="patch git curl"
 
 RUN	apt-get update \
