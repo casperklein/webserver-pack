@@ -1,6 +1,6 @@
 #!/bin/bash
 apachectl start
-./2do.sh
+./vhost.sh
 
 DOMAIN=$(curl -s https://www.traceroot.de/hostname)
 patch /etc/apache2/sites-available/$DOMAIN -i docker/docker-ssl.patch

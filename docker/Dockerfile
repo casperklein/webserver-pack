@@ -13,15 +13,15 @@ RUN	apt-get update \
 WORKDIR /root/webserver-pack
 
 # Customize
-RUN	sed -i 's/bin\/cat/bin\/bash/g' install.sh \
-&&	sed -i 's/aptitude/apt-get -y/g' install.sh \
-&&	sed -i 's/^openssl/exit #openssl/' install.sh \
-&&	sed -i 's/^DOMAIN=n.*//g' 2do.sh \
-&&	sed -i 's/^vi.*//g' 2do.sh \
-&&	sed -i 's/^logrotate.*//g' 2do.sh \
-&&	sed -i 's/bin\/cat/bin\/bash/g' 2do.sh
+RUN	sed -i 's/bin\/cat/bin\/bash/g' setup.sh \
+&&	sed -i 's/aptitude/apt-get -y/g' setup.sh \
+&&	sed -i 's/^openssl/exit #openssl/' setup.sh \
+&&	sed -i 's/^DOMAIN=n.*//g' vhost.sh \
+&&	sed -i 's/^vi.*//g' vhost.sh \
+&&	sed -i 's/^logrotate.*//g' vhost.sh \
+&&	sed -i 's/bin\/cat/bin\/bash/g' vhost.sh
 
-RUN ./install.sh
+RUN ./setup.sh
 
 RUN a2dissite 000-default.conf
 
