@@ -21,10 +21,10 @@
 	ErrorLog ${DOMAIN_PATH}/logs/error.log
 
 	RewriteEngine On
-	
+
 	# Security Settings
 	include /etc/apache2/sites-available/_security
-	
+
 	# Force www subdomain & HTTPS
 	#SetEnvIf Request_Protocol "HTTP.*" DOMAIN_NAME=${DOMAIN}
 	#include /etc/apache2/sites-available/_forceWWWhttps
