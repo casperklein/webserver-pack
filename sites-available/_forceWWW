@@ -12,7 +12,7 @@
 
 RewriteCond %{HTTPS} =on
 RewriteRule ^(.+)$ - [env=proto:https]
-	
+
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.+)$ - [env=proto:http]
 

@@ -9,7 +9,7 @@
 	#php_admin_flag safe_mode Off
 	#php_admin_flag allow_url_fopen On
 	#php_admin_flag display_errors Off
-        #php_admin_flag log_errors On
+	#php_admin_flag log_errors On
 
 	#php_admin_value magic_quotes_gpc 0
 	#php_admin_value open_basedir ${DOMAIN_PATH}/:/dev/null
