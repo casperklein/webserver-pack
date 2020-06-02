@@ -28,8 +28,12 @@ curl -s -D- -o /dev/null localhost
 # Logrotate
 cp vhost-logrotate /etc/logrotate.d/
 
-# Paranoid? Create own DH prime
-openssl dhparam -out /ssl/dhparams.pem 2048
+# Paranoid? Create own DH prime --> not recommended anymore
+# openssl dhparam -out /ssl/dhparams.pem 2048
+
+# pre-defined DHE groups as recommended by IETF RFC 7919
+# https://github.com/internetstandards/dhe_groups
+wget -O /ssl/dhparams.pem https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem
 
 # PHP
 
