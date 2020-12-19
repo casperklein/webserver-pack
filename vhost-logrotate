@@ -12,18 +12,18 @@
 /var/domains/*/logs/access.log
 /var/domains/*/logs/error.log
 {
-	#daily
-	size=1M
+	weekly
+	#size=1M
 	missingok
-	rotate 10
+	rotate 5
 	compress
 	delaycompress
 	notifempty
 	create 640 root root
 	sharedscripts
 	postrotate
-		if /etc/init.d/apache2 status > /dev/null ; then \
-			/etc/init.d/apache2 reload > /dev/null; \
+		if invoke-rc.d apache2 status > /dev/null 2>&1; then \
+			invoke-rc.d apache2 reload > /dev/null 2>&1; \
 		fi;
 	endscript
 }
@@ -33,15 +33,15 @@
 	#daily
 	size=1M
 	missingok
-	rotate 10
+	rotate 1
 	compress
 	delaycompress
 	notifempty
 	create 640 www-data www-data
 	sharedscripts
 	postrotate
-		if /etc/init.d/apache2 status > /dev/null ; then \
-			/etc/init.d/apache2 reload > /dev/null; \
+		if invoke-rc.d apache2 status > /dev/null 2>&1; then \
+			invoke-rc.d apache2 reload > /dev/null 2>&1; \
 		fi;
 	endscript
 }
