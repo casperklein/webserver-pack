@@ -1,12 +1,43 @@
-/var/domains/*/logs/*.log {
+# daily			# Log files are rotated daily|weekly|monthly|yearly.
+# size=10M		# Log files are rotated only if they grow bigger than X bytes.
+# missingok		# If the log file is missing, go on to the next one without issuing an error message.
+# rotate 10		# Log files are rotated X times before being removed.
+# compress		# Old versions of log files are compressed with gzip.
+# delaycompress		# Postpone compression of the previous log file to the next rotation cycle.
+# notifempty		# Do not rotate the log if it is empty.
+# create 640 root root	# Immediately after rotation (before the postrotate script is run) the log file is created (with the same name as the log file just rotated).
+# sharedscripts		# If sharedscripts is specified, the scripts are only run once, no matter how many logs match the wildcarded pattern.
+# postrotate		# The lines between postrotate and endscript are executed (using /bin/sh) after the log file is rotated.
+
+/var/domains/*/logs/access.log
+/var/domains/*/logs/error.log
+{
 	#daily
-	size=10M
+	size=1M
 	missingok
 	rotate 10
 	compress
 	delaycompress
 	notifempty
 	create 640 root root
+	sharedscripts
+	postrotate
+		if /etc/init.d/apache2 status > /dev/null ; then \
+			/etc/init.d/apache2 reload > /dev/null; \
+		fi;
+	endscript
+}
+
+/var/domains/*/logs/php.log
+{
+	#daily
+	size=1M
+	missingok
+	rotate 10
+	compress
+	delaycompress
+	notifempty
+	create 640 www-data www-data
 	sharedscripts
 	postrotate
 		if /etc/init.d/apache2 status > /dev/null ; then \
