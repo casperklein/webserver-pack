@@ -1,6 +1,6 @@
 SSLEngine on
 SSLCertificateFile ${DOMAIN_CERT}
-SSLUseStapling on
+# SSLUseStapling on # https://community.letsencrypt.org/t/ending-ocsp-support-in-2025-webserver-configuration/229787
 
 # Test SSL Stapling
 # for i in example.com www.example.com; do echo $i;openssl s_client -connect $i:443 -servername $i -status < /dev/null 2>/dev/null| grep 'OCSP response'; done
